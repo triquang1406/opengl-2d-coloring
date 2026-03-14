@@ -1,0 +1,14 @@
+# Build artifacts
+build/
+*.exe
+*.o
+*.obj
+
+# IDE / editor files
+.vscode/
+.idea/
+*.user
+
+# OS-generated files
+.DS_Store
+Thumbs.db
