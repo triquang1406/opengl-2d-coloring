@@ -380,7 +380,7 @@ void MainMenu(int id)
     if (id == 0) exit(0);
 }
 
-void CreateMenu()
+void CreateContextMenu()
 {
     /* Color submenu */
     int colorMenuId = glutCreateMenu(ColorMenu);
@@ -454,7 +454,7 @@ int main(int argc, char** argv)
     glutMouseFunc(XuLyMouse);
 
     /* Build and attach the right-click context menu */
-    CreateMenu();
+    CreateContextMenu();
 
     printf("=== Lab-02: 2D Object Coloring – Boundary Fill ===\n");
     printf("Right-click : open context menu\n");
