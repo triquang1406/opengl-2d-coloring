@@ -493,7 +493,7 @@ int main(int argc, char** argv)
 
     printf("=== Lab-03: 2D Object Coloring - Boundary Fill ===\n");
     printf("Right-click : open context menu\n");
-    printf("Left-click  : fill the shape at the clicked seed point\n");
+    printf("Left-click  : fill the shape at the clicked seed point (hold to keep the color)\n");
     printf("==================================================\n");
 
     glutMainLoop();
