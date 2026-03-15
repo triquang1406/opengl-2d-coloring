@@ -202,19 +202,6 @@ void DrawPolygon(int cx, int cy, int r, int n)
     glFlush();
 }
 
-void DrawLine(int cx, int cy)
-{
-    /* Draw as minus sign - horizontal line */
-    glColor3ub(boundaryColor.r, boundaryColor.g, boundaryColor.b);
-    glLineWidth(2.0);
-    glBegin(GL_LINES);
-        glVertex2i(cx - 150, cy);
-        glVertex2i(cx + 150, cy);
-    glEnd();
-    glLineWidth(1.0);
-    glFlush();
-}
-
 void DrawArrow(int cx, int cy)
 {
     glColor3ub(boundaryColor.r, boundaryColor.g, boundaryColor.b);
@@ -339,7 +326,7 @@ void Display()
             case 14: DrawDivide(cx, cy, 80); break;
             case 15: DrawRightTriangle(cx, cy, 130); break;
             case 16: DrawRectangle(cx - 100, cy - 80, cx + 100, cy + 80); break;
-            case 99: DrawLine(cx, cy); break;
+            case 99: DrawMinus(cx, cy, 80); break;
         }
     }
 
