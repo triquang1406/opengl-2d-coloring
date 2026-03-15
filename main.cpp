@@ -1,8 +1,3 @@
-/*
- * Lab-02: 2D Object Coloring with OpenGL
- * Boundary Fill Algorithm Implementation
- */
-
 #include <GL/glut.h>
 #include <cmath>
 #include <cstdio>
@@ -22,14 +17,10 @@ struct RGBColor {
         : r(r), g(g), b(b) {}
 };
 
-RGBColor fillColor(0, 0, 255);      /* Blue */
-RGBColor boundaryColor(0, 0, 0);    /* Black boundary */
+RGBColor fillColor(0, 0, 255);
+RGBColor boundaryColor(0, 0, 0);
 
 int currentShape = 0;
-
-/* ============================================================
- * Core pixel functions
- * ============================================================ */
 
 RGBColor GetPixel(int x, int y)
 {
@@ -38,10 +29,6 @@ RGBColor GetPixel(int x, int y)
     return RGBColor(pixels[0], pixels[1], pixels[2]);
 }
 
-/*
- * PutPixel - write one pixel at screen position (x, y) using
- * glRasterPos2i and glDrawPixels as required by the assignment.
- */
 void PutPixel(int x, int y, RGBColor color)
 {
     unsigned char pixel[3] = {color.r, color.g, color.b};
@@ -135,10 +122,6 @@ void BoundaryFill(int x, int y, RGBColor F_Color, RGBColor B_Color)
     glFlush();
 }
 
-/* ============================================================
- * Shape Drawing Functions
- * ============================================================ */
-
 void DrawRectangle(int x1, int y1, int x2, int y2)
 {
     glColor3ub(boundaryColor.r, boundaryColor.g, boundaryColor.b);
@@ -184,11 +167,6 @@ void DrawEllipse(int cx, int cy, int rx, int ry)
     glFlush();
 }
 
-/*
- * Equilateral Triangle - all three sides equal, pointing upward.
- * Vertices are placed at 120-degree intervals around the center,
- * starting from the bottom-left so the flat base is at the bottom.
- */
 void DrawEquilateralTriangle(int cx, int cy, int r)
 {
     glColor3ub(boundaryColor.r, boundaryColor.g, boundaryColor.b);
@@ -203,14 +181,11 @@ void DrawEquilateralTriangle(int cx, int cy, int r)
     glFlush();
 }
 
-/*
- * Isosceles Right Triangle - right angle at the top vertex (45-45-90).
- */
 void DrawIsoscelesRightTriangle(int cx, int cy, int r)
 {
     glColor3ub(boundaryColor.r, boundaryColor.g, boundaryColor.b);
     glBegin(GL_LINE_LOOP);
-        glVertex2i(cx,     cy - r);   /* Top  (right angle) */
+        glVertex2i(cx, cy);   /* Top  (right angle) */
         glVertex2i(cx + r, cy + r);   /* Bottom-right */
         glVertex2i(cx - r, cy + r);   /* Bottom-left  */
     glEnd();
@@ -318,8 +293,8 @@ void DrawDivide(int cx, int cy, int size)
 
     glPointSize(8.0);
     glBegin(GL_POINTS);
-        glVertex2i(cx - 15, cy + 25);
-        glVertex2i(cx + 15, cy - 25);
+        glVertex2i(cx - 30, cy + 75);
+        glVertex2i(cx + 30, cy - 75);
     glEnd();
     glPointSize(1.0);
     glFlush();
@@ -341,16 +316,12 @@ void DrawRightTriangle(int cx, int cy, int r)
 {
     glColor3ub(boundaryColor.r, boundaryColor.g, boundaryColor.b);
     glBegin(GL_LINE_LOOP);
-        glVertex2i(cx,     cy - r);
-        glVertex2i(cx + r, cy + r);
+        glVertex2i(cx, cy - r);
+        glVertex2i(cx, cy + r);
         glVertex2i(cx - r, cy + r);
     glEnd();
     glFlush();
 }
-
-/* ============================================================
- * GLUT Callbacks
- * ============================================================ */
 
 void Display()
 {
@@ -396,12 +367,6 @@ void Reshape(int width, int height)
     glutPostRedisplay();
 }
 
-/*
- * Mouse handler.
- * On left-button down: run boundary fill at the clicked seed point.
- * The fill result is written to the framebuffer via glDrawPixels inside
- * BoundaryFill, so it persists after the mouse button is released.
- */
 void MouseHandler(int button, int state, int x, int y)
 {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
@@ -411,10 +376,6 @@ void MouseHandler(int button, int state, int x, int y)
         }
     }
 }
-
-/* ============================================================
- * Menu Callbacks
- * ============================================================ */
 
 void ColorMenu(int id)
 {
@@ -511,7 +472,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(w, h);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("Lab-02: 2D Object Coloring - Boundary Fill");
+    glutCreateWindow("Lab-03: 2D Object Coloring - Boundary Fill");
 
     glDisable(GL_DITHER);
     glDisable(GL_LINE_SMOOTH);
@@ -530,7 +491,7 @@ int main(int argc, char** argv)
 
     CreateContextMenu();
 
-    printf("=== Lab-02: 2D Object Coloring - Boundary Fill ===\n");
+    printf("=== Lab-03: 2D Object Coloring - Boundary Fill ===\n");
     printf("Right-click : open context menu\n");
     printf("Left-click  : fill the shape at the clicked seed point\n");
     printf("==================================================\n");
